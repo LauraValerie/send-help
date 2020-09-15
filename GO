@@ -15,6 +15,7 @@
 > names(geneList)<-geneNames
 > if (!requireNamespace("BiocManager", quietly = TRUE))
 +     install.packages("BiocManager")
+# load Human genome annotation for mapping
 > BiocManager::install("org.Hs.eg.db")
 > library("org.Hs.eg.db")
 > Godata<-new("topGOdata",ontology="BP",allGenes=geneList,annot=annFUN.org,mapping="org.Hs.eg.db",ID="ensembl")
