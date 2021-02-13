@@ -31,3 +31,23 @@ legend(x="bottomleft", inset=.05,title="Cell Line",legend = c("K5","F6","K2A","F
 plot(f_time[f_sample==9],Change.1[f_sample==9],main = "Fusion Cell Migration (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=15,col="black")
 points(f_time[f_sample==8],Change.1[f_sample==8],main = "Fusion Cell Migration (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=16,col="darkgreen")
 legend(x="bottomleft", inset=.05,title="Cell Line",legend = c("FT3_JNJ","FT3_FGF"),pch=c(15,16),col=c("black","darkgreen"))
+
+
+#calcium imaging heatmaps
+#packages
+source("http://bioconductor.org/biocLite.R")
+biocLite("ComplexHeatmap")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+install.packages("BiocManager")
+BiocManager::install("ComplexHeatmap")
+#get your data frame to numeric
+mat = as.matrix(as.data.frame(lapply(data, as.numeric)))
+#change the values to 10^-3
+data1<-(mat*10^-3)
+#transpose the matrix
+mat.t<-t(data1)
+library(ComplexHeatmap)
+#order the colors and values
+col = colorRamp2(c(0,5,10), c("blue","white", "red"))
+Heatmap(mat.t, cluster_columns =  FALSE, col = col,column_title = "F6 FGF") #block column clustering to keep the time as x-axis
+
