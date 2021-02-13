@@ -1,3 +1,4 @@
+#wound healing plots
 data=read.csv2("wound_healing_repeat_more_confluent_wells.csv")
 View(data)
 attach(data)
