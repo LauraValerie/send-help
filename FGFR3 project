@@ -47,6 +47,7 @@ data1<-(mat*10^-3)
 #transpose the matrix
 mat.t<-t(data1)
 library(ComplexHeatmap)
+library(circlize)
 #order the colors and values
 col = colorRamp2(c(0,5,10), c("blue","white", "red"))
 Heatmap(mat.t, cluster_columns =  FALSE, col = col,column_title = "F6 FGF") #block column clustering to keep the time as x-axis
