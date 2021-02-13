@@ -1,0 +1,32 @@
+data=read.csv2("wound_healing_repeat_more_confluent_wells.csv")
+View(data)
+attach(data)
+View(data)
+data$Timepoint<-as.numeric(data$Timepoint) #Time as numeric 
+data$Average.change<-as.numeric(data$Average.change) #Average change in wound area as numeric
+data$SEM<-as.numeric(data$SEM) #standard error of mean as numeric
+detach(data)
+attach(data)
+data$f_sample=factor(Sample, levels = c(1,2,3,4,5,6,7,8,9,10,11,12),labels = c("1","2","3","4","5","6","7","8","9","10","11","12")) #sample ID as factor for statistics
+data$f_time=factor(Time, levels = c(0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24),labels = c("0","0.5","1","1.5","2","2.5","3","3.5","4","4.5","5","5.5","6","6.5","7","7.5","8","8.5","9","9.5","10","10.5","11","11.5","12","12.5","13","13.5","14","14.5","15","15.5","16","16.5","17","17.5","18","18.5","19","19.5","20","20.5","21","21.5","22","22.5","23","23.5","24")) #time as factor for statistics
+data$Change.1<-as.numeric(data$Change.1) #Change.1 is a negative change in wound area, when original wound are is 100%
+detach(data)
+attach(data)
+plot(f_time[f_sample==1],Change.1[f_sample==1],main = "Serum Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=15,col="black")
+points(f_time[f_sample==4],Change.1[f_sample==4],main = "Serum Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=16,col="blue")
+points(f_time[f_sample==7],Change.1[f_sample==7],main = "Serum Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=17,col="darkgreen")
+points(f_time[f_sample==10],Change.1[f_sample==10],main = "Serum Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=18,col="red")
+legend(x="bottomleft", inset=.05,title="Cell Line",legend = c("K5","F6","K2A","FT3"),pch=c(15,18,16,17),col=c("black","red","blue","darkgreen"))
+plot(f_time[f_sample==2],Change.1[f_sample==2],main = "FGF Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=15,col="black")
+points(f_time[f_sample==5],Change.1[f_sample==5],main = "FGF Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=16,col="blue")
+points(f_time[f_sample==8],Change.1[f_sample==8],main = "FGF Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=17,col="darkgreen")
+points(f_time[f_sample==11],Change.1[f_sample==11],main = "FGF Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=18,col="red")
+legend(x="bottomleft", inset=.05,title="Cell Line",legend = c("K5","F6","K2A","FT3"),pch=c(15,18,16,17),col=c("black","red","blue","darkgreen"))
+plot(f_time[f_sample==3],Change.1[f_sample==3],main = "Influence of JNJ to FGF Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=15,col="black")
+points(f_time[f_sample==6],Change.1[f_sample==6],main = "Influence of JNJ to FGF Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=16,col="blue")
+points(f_time[f_sample==9],Change.1[f_sample==9],main = "Influence of JNJ to FGF Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=17,col="darkgreen")
+points(f_time[f_sample==12],Change.1[f_sample==12],main = "Influence of JNJ to FGF Induced Change In Wound Area Over Time (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=18,col="red")
+legend(x="bottomleft", inset=.05,title="Cell Line",legend = c("K5","F6","K2A","FT3"),pch=c(15,18,16,17),col=c("black","red","blue","darkgreen"))
+plot(f_time[f_sample==9],Change.1[f_sample==9],main = "Fusion Cell Migration (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=15,col="black")
+points(f_time[f_sample==8],Change.1[f_sample==8],main = "Fusion Cell Migration (%)",xlab = "Time (h)",ylab = "Average Wound Closure (%)",ylim = c(0,100),pch=16,col="darkgreen")
+legend(x="bottomleft", inset=.05,title="Cell Line",legend = c("FT3_JNJ","FT3_FGF"),pch=c(15,16),col=c("black","darkgreen"))
