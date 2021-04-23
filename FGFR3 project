@@ -40,12 +40,20 @@ biocLite("ComplexHeatmap")
 if (!requireNamespace("BiocManager", quietly = TRUE))
 install.packages("BiocManager")
 BiocManager::install("ComplexHeatmap")
-#get your data frame to numeric
-mat = as.matrix(as.data.frame(lapply(data, as.numeric)))
+#header FALSE, because I had no headers
+data=read.csv2("data.csv", header = FALSE)
+#Last column was background signal intensity. By creating a vector of the values, I can then decrease the background signal from actual signal.
+#vectorizing the last column
+> vec1<-data$V70
+#sweep command (where, 1 columnwise / 2 rowvise, what, add +, * or other, what you want to do to your data. - is default, so I did not add any command.
+#This command reduces vector 1, which contains a column of background signal values, columnwise across all data.  
+> data1<-sweep(data,1,vec1)
+#get your sweeped data frame to numeric
+mat = as.matrix(as.data.frame(lapply(data1, as.numeric)))
 #change the values to 10^-3
-data1<-(mat*10^-3)
+data2<-(mat*10^-3)
 #transpose the matrix
-mat.t<-t(data1)
+mat.t<-t(data2)
 library(ComplexHeatmap)
 library(circlize)
 #order the colors and values
