@@ -58,5 +58,5 @@ library(ComplexHeatmap)
 library(circlize)
 #order the colors and values
 col = colorRamp2(c(0,5,10), c("blue","white", "red"))
-Heatmap(mat.t, cluster_columns =  FALSE, col = col,column_title = "F6 FGF") #block column clustering to keep the time as x-axis
+Heatmap(mat.t[1:33,1:121], cluster_columns =  FALSE, col = col,show_row_names = FALSE, column_title = "Fusion base 1") #block column clustering to keep the time as x-axis, leave out the control column, hide row names
 
