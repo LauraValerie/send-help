@@ -58,7 +58,7 @@ library(ComplexHeatmap)
 library(circlize)
 #order the colors and values
 col = colorRamp2(c(0,5,10), c("blue","white", "red"))
-Heatmap(mat.t[1:33,1:121], name = "Fluorescence intensity", cluster_columns =  FALSE, col = col,show_row_names = FALSE, column_title = "Fusion base 1") 
+Heatmap(mat.t[1:69,1:121], name = "Fluorescence intensity", cluster_columns =  FALSE, col = col,show_row_names = FALSE, column_title = "Fusion base 1") 
 #leave out the control column
 #name the scale
 #block column clustering to keep the time as x-axis
